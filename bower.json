@@ -1,0 +1,25 @@
+{
+  "name": "sectir-respuesta-app",
+  "version": "0.0.1",
+  "homepage": "https://github.com/asdrubalivan/sectir-respuesta-app",
+  "authors": [
+    "Asdrúbal Iván Suárez Rivera <asdrubal.ivan.suarez.rivera@gmail.com>"
+  ],
+  "description": "Aplicación que será usada en proyecto sectir para compilar respuestas de usuarios",
+  "main": "src/main.js",
+  "keywords": [
+    "sectir"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": [
+      "sectir-table": "asdrubalivan/sectir-table"
+  ]
+}
