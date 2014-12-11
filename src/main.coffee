@@ -18,7 +18,7 @@ sectirRApp.controller 'sectirRespuestaCtrl', ["$http","$scope", "sectirRespuesta
     $scope.jsonData = false
     successFn = (data)->
         $scope.jsonData = data
-    $http.get(SRC.getUrl())
+    $http.get("http://localhost/sectir/index.php?r=respuesta/default/preguntas&idTE=1")
         .then(successFn)
     return
 ]

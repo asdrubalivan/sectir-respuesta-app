@@ -26,7 +26,7 @@
       successFn = function(data) {
         return $scope.jsonData = data;
       };
-      $http.get(SRC.getUrl()).then(successFn);
+      $http.get("http://localhost/sectir/index.php?r=respuesta/default/preguntas&idTE=1").then(successFn);
     }
   ]);
 
