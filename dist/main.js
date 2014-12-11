@@ -3,7 +3,7 @@
 
   sectirRApp = angular.module('sectirRespuestaApp', ['sectirTableModule']);
 
-  sectirRApp.provider('sectirRespuestaConfig', function() {
+  sectirRApp.provider('sectirRespuestaConfigProvider', function() {
     this.url = false;
     return {
       set: function(myURL) {
@@ -20,13 +20,13 @@
   });
 
   sectirRApp.controller('sectirRespuestaCtrl', [
-    "$http", "$scope", "sectirRespuestaConfig", function($http, $scope, SRC) {
+    "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
       var successFn;
       $scope.jsonData = false;
       successFn = function(data) {
         return $scope.jsonData = data;
       };
-      $http.get("http://localhost/sectir/index.php?r=respuesta/default/preguntas&idTE=1").then(successFn);
+      $http.get(SRC.getURL()).then(successFn);
     }
   ]);
 
