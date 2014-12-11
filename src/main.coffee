@@ -2,14 +2,16 @@ sectirRApp = angular.module 'sectirRespuestaApp', [
     'sectirTableModule'
 ]
 
+url = false
+
 sectirRApp.provider 'sectirRespuestaConfigProvider',
     {
         set: (myURL) ->
-            @url = myURL
+            url = myURL
         $get: ->
             {
                 getURL: ->
-                    @url
+                    url
             }
     }
 

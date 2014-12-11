@@ -1,16 +1,18 @@
 (function() {
-  var sectirRApp;
+  var sectirRApp, url;
 
   sectirRApp = angular.module('sectirRespuestaApp', ['sectirTableModule']);
 
+  url = false;
+
   sectirRApp.provider('sectirRespuestaConfigProvider', {
     set: function(myURL) {
-      return this.url = myURL;
+      return url = myURL;
     },
     $get: function() {
       return {
         getURL: function() {
-          return this.url;
+          return url;
         }
       };
     }
