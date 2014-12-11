@@ -2,7 +2,7 @@ sectirRApp = angular.module 'sectirRespuestaApp', [
     'sectirTableModule'
 ]
 
-sectirRApp.provider 'sectirRespuestaConfig', ->
+sectirRApp.provider 'sectirRespuestaConfigProvider', ->
     @url = false
     {
         set: (myURL) ->
@@ -14,11 +14,11 @@ sectirRApp.provider 'sectirRespuestaConfig', ->
             }
     }
 
-sectirRApp.controller 'sectirRespuestaCtrl', ["$http","$scope", "sectirRespuestaConfig", ($http, $scope , SRC) ->
+sectirRApp.controller 'sectirRespuestaCtrl', ["$http","$scope", "sectirRespuestaConfigProvider", ($http, $scope , SRC) ->
     $scope.jsonData = false
     successFn = (data)->
         $scope.jsonData = data
-    $http.get("http://localhost/sectir/index.php?r=respuesta/default/preguntas&idTE=1")
+    $http.get(SRC.getURL())
         .then(successFn)
     return
 ]
