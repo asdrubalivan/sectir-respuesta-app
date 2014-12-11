@@ -10,7 +10,11 @@
         return this.url = myURL;
       },
       $get: function() {
-        return this.url;
+        return {
+          getURL: function() {
+            return this.url;
+          }
+        };
       }
     };
   });
@@ -22,7 +26,7 @@
       successFn = function(data) {
         return $scope.jsonData = data;
       };
-      $http.get(SRC.url).then(successFn);
+      $http.get(SRC.getUrl()).then(successFn);
     }
   ]);
 
