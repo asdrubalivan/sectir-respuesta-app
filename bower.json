@@ -6,7 +6,7 @@
     "Asdrúbal Iván Suárez Rivera <asdrubal.ivan.suarez.rivera@gmail.com>"
   ],
   "description": "Aplicación que será usada en proyecto sectir para compilar respuestas de usuarios",
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "keywords": [
     "sectir"
   ],

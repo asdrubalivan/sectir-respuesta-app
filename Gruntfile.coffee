@@ -7,7 +7,7 @@ module.exports = (grunt) ->
         copy:
             main:
                 src: "build/script.js"
-                dest: "dist/app.js"
+                dest: "dist/main.js"
 
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-copy'
