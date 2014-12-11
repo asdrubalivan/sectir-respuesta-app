@@ -4,11 +4,11 @@
   sectirRApp = angular.module('sectirRespuestaApp', ['sectirTableModule']);
 
   sectirRApp.controller('sectirRespuestaCtrl', [
-    "$http", "SECTIR_PREG_URL", function($http, SPU) {
+    "$http", "$scope", "SECTIR_PREG_URL", function($http, $scope, SPU) {
       var successFn;
-      $scope.json = false;
+      $scope.jsonData = false;
       successFn = function(data) {
-        return $scope.json = data;
+        return $scope.jsonData = data;
       };
       $http.get(SPU).then(successFn);
     }

@@ -2,7 +2,7 @@ sectirRApp = angular.module 'sectirRespuestaApp', [
     'sectirTableModule'
 ]
 
-sectirRApp.controller 'sectirRespuestaCtrl', ["$http", "SECTIR_PREG_URL", ($http, SPU) ->
+sectirRApp.controller 'sectirRespuestaCtrl', ["$http","$scope", "SECTIR_PREG_URL", ($http, $scope , SPU) ->
     $scope.jsonData = false
     successFn = (data)->
         $scope.jsonData = data
