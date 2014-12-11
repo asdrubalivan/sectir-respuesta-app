@@ -8,14 +8,17 @@ sectirRApp.provider 'sectirRespuestaConfig', ->
         set: (myURL) ->
             @url = myURL
         $get: ->
-            @url
+            {
+                getURL: ->
+                    @url
+            }
     }
 
 sectirRApp.controller 'sectirRespuestaCtrl', ["$http","$scope", "sectirRespuestaConfig", ($http, $scope , SRC) ->
     $scope.jsonData = false
     successFn = (data)->
         $scope.jsonData = data
-    $http.get(SRC.url)
+    $http.get(SRC.getUrl())
         .then(successFn)
     return
 ]
