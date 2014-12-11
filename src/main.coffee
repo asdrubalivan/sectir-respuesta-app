@@ -3,9 +3,9 @@ sectirRApp = angular.module 'sectirRespuestaApp', [
 ]
 
 sectirRApp.controller 'sectirRespuestaCtrl', ["$http", "SECTIR_PREG_URL", ($http, SPU) ->
-    $scope.json = false
+    $scope.jsonData = false
     successFn = (data)->
-        $scope.json = data
+        $scope.jsonData = data
     $http.get(SPU)
         .then(successFn)
     return
