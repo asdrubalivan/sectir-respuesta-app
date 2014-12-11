@@ -28,13 +28,14 @@
           "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
             var successFn;
             $scope.jsonData = false;
+            $scope.datos = false;
             $scope.finalFunc = function() {};
             successFn = function(data) {
               var arrayDatos, value;
               $scope.jsonData = data;
               arrayDatos = [];
               for (value in data.data) {
-                arrayDatos.push(value);
+                arrayDatos.push(data.data[value]);
               }
               return $scope.datos = arrayDatos;
             };
@@ -43,16 +44,16 @@
         ],
         link: function(scope, element, attrs, ctrl) {
           var elm, funcCompile;
-          elm = angular.element('<div sectir-pager\n    values="jsonData"\n    finalizeFunc ="finalFunc"\n</div>');
+          elm = angular.element('<div sectir-pager\n    values="datos"\n    finalizeFunc ="finalFunc"\n</div>');
           funcCompile = function() {
             var compiled;
-            if (!isCompiled && scope.jsonData) {
+            if (!isCompiled && scope.datos) {
               isCompiled = true;
               compiled = $compile(elm)(scope);
               element.append(compiled);
             }
           };
-          scope.$watch("jsonData", funcCompile, true);
+          scope.$watch("datos", funcCompile, true);
         }
       };
     }
