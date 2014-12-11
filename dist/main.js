@@ -39,14 +39,10 @@
           }
         ],
         link: function(scope, element, attrs, ctrl) {
-          var elm;
+          var compiled, elm;
           elm = angular.element('<sectir-pager\n    values="jsonData"\n    finalizeFunc ="finalFunc"\n</sectir-pager>');
-          return scope.$watch("jsonData", function() {
-            var compiled;
-            element.html('');
-            compiled = $compile(elm)(scope);
-            element.append(compiled);
-          }, true);
+          compiled = $compile(elm)(scope);
+          element.append(compiled);
         }
       };
     }

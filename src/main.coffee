@@ -37,12 +37,10 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
             finalizeFunc ="finalFunc"
         </sectir-pager>
         '''
-        scope.$watch("jsonData", ->
-            element.html ''
-            compiled = $compile(elm)(scope)
-            element.append compiled
-            return
-        , true)
+        compiled = $compile(elm)(scope)
+        element.append compiled
+        return
+
 
 ]
 
