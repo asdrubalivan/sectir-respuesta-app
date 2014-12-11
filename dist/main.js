@@ -21,6 +21,7 @@
   sectirRApp.directive('sectirApp', [
     "$compile", function($compile) {
       return {
+        restrict: "EA",
         controller: [
           "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
             var successFn;
@@ -40,7 +41,7 @@
         ],
         link: function(scope, element, attrs, ctrl) {
           var compiled, elm;
-          elm = angular.element('<sectir-pager\n    values="jsonData"\n    finalizeFunc ="finalFunc"\n</sectir-pager>');
+          elm = angular.element('<div sectir-pager\n    values="jsonData"\n    finalizeFunc ="finalFunc"\n</div>');
           compiled = $compile(elm)(scope);
           element.append(compiled);
         }

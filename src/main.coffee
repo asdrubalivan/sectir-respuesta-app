@@ -16,6 +16,7 @@ sectirRApp.provider 'sectirRespuestaConfigProvider',
     }
 
 sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
+    restrict: "EA"
     controller: ["$http","$scope", "sectirRespuestaConfigProvider", ($http, $scope , SRC) ->
         $scope.jsonData = false
         $scope.finalFunc = ->
@@ -32,10 +33,10 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
     ]
     link: (scope, element, attrs, ctrl) ->
         elm = angular.element '''
-        <sectir-pager
+        <div sectir-pager
             values="jsonData"
             finalizeFunc ="finalFunc"
-        </sectir-pager>
+        </div>
         '''
         compiled = $compile(elm)(scope)
         element.append compiled
