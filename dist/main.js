@@ -18,14 +18,37 @@
     }
   });
 
-  sectirRApp.controller('sectirRespuestaCtrl', [
-    "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
-      var successFn;
-      $scope.jsonData = false;
-      successFn = function(data) {
-        return $scope.jsonData = data;
+  sectirRApp.directive('sectirApp', [
+    "$compile", function() {
+      return {
+        controller: [
+          "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
+            var successFn;
+            $scope.jsonData = false;
+            $scope.finalFunc = function() {};
+            successFn = function(data) {
+              var arrayDatos, value;
+              $scope.jsonData = data;
+              arrayDatos = [];
+              for (value in data.data) {
+                arrayDatos.push(value);
+              }
+              return $scope.datos = arrayDatos;
+            };
+            $http.get(SRC.getURL()).then(successFn);
+          }
+        ],
+        link: function(scope, element, attrs, ctrl) {
+          var elm;
+          elm = angular.element('<sectir-page\n    values="jsonData"\n    finalizeFunc ="finalFunc"\n</sectir-pager>');
+          return scope.$watch("jsonData", function() {
+            var compiled;
+            element.html('');
+            compiled = $compile(elm)(scope);
+            element.append(compiled);
+          }, true);
+        }
       };
-      $http.get(SRC.getURL()).then(successFn);
     }
   ]);
 
