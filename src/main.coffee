@@ -15,7 +15,7 @@ sectirRApp.provider 'sectirRespuestaConfigProvider',
             }
     }
 
-sectirRApp.directive 'sectirApp', ["$compile", ->
+sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
     controller: ["$http","$scope", "sectirRespuestaConfigProvider", ($http, $scope , SRC) ->
         $scope.jsonData = false
         $scope.finalFunc = ->

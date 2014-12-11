@@ -19,7 +19,7 @@
   });
 
   sectirRApp.directive('sectirApp', [
-    "$compile", function() {
+    "$compile", function($compile) {
       return {
         controller: [
           "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
