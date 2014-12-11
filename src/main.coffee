@@ -32,7 +32,7 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
     ]
     link: (scope, element, attrs, ctrl) ->
         elm = angular.element '''
-        <sectir-page
+        <sectir-pager
             values="jsonData"
             finalizeFunc ="finalFunc"
         </sectir-pager>
