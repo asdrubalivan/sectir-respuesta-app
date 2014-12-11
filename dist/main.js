@@ -20,6 +20,8 @@
 
   sectirRApp.directive('sectirApp', [
     "$compile", function($compile) {
+      var isCompiled;
+      isCompiled = false;
       return {
         restrict: "EA",
         controller: [
@@ -40,10 +42,17 @@
           }
         ],
         link: function(scope, element, attrs, ctrl) {
-          var compiled, elm;
+          var elm, funcCompile;
           elm = angular.element('<div sectir-pager\n    values="jsonData"\n    finalizeFunc ="finalFunc"\n</div>');
-          compiled = $compile(elm)(scope);
-          element.append(compiled);
+          funcCompile = function() {
+            var compiled;
+            if (!isCompiled && scope.jsonData) {
+              isCompiled = true;
+              compiled = $compile(elm)(scope);
+              element.append(compiled);
+            }
+          };
+          scope.$watch("jsonData", funcCompile, true);
         }
       };
     }
