@@ -3,20 +3,17 @@
 
   sectirRApp = angular.module('sectirRespuestaApp', ['sectirTableModule']);
 
-  sectirRApp.provider('sectirRespuestaConfigProvider', function() {
-    this.url = false;
-    return {
-      set: function(myURL) {
-        return this.url = myURL;
-      },
-      $get: function() {
-        return {
-          getURL: function() {
-            return this.url;
-          }
-        };
-      }
-    };
+  sectirRApp.provider('sectirRespuestaConfigProvider', {
+    set: function(myURL) {
+      return this.url = myURL;
+    },
+    $get: function() {
+      return {
+        getURL: function() {
+          return this.url;
+        }
+      };
+    }
   });
 
   sectirRApp.controller('sectirRespuestaCtrl', [

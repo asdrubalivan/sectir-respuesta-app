@@ -2,8 +2,7 @@ sectirRApp = angular.module 'sectirRespuestaApp', [
     'sectirTableModule'
 ]
 
-sectirRApp.provider 'sectirRespuestaConfigProvider', ->
-    @url = false
+sectirRApp.provider 'sectirRespuestaConfigProvider',
     {
         set: (myURL) ->
             @url = myURL
