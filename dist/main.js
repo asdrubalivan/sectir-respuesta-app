@@ -40,11 +40,21 @@
               return $scope.datos = arrayDatos;
             };
             $http.get(SRC.getURL()).then(successFn);
+            $scope.settings = {
+              table: {
+                titlefield: "enunciado",
+                typefield: "tipo"
+              },
+              input: {
+                namefield: "enunciado",
+                typefield: "tipo"
+              }
+            };
           }
         ],
         link: function(scope, element, attrs, ctrl) {
           var elm, funcCompile;
-          elm = angular.element('<div sectir-pager\n    values="datos"\n    finalizeFunc ="finalFunc"\n</div>');
+          elm = angular.element('<div sectir-pager\n    values="datos"\n    finalizeFunc ="finalFunc"\n    settings = "settings"\n</div>');
           funcCompile = function() {
             var compiled;
             if (!isCompiled && scope.datos) {

@@ -32,6 +32,15 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
                 $scope.datos = arrayDatos
             $http.get(SRC.getURL())
                 .then(successFn)
+            $scope.settings = {
+                table:
+                    titlefield: "enunciado"
+                    typefield: "tipo"
+                input:
+                    namefield: "enunciado"
+                    typefield: "tipo"
+
+            }
             return
         ]
         link: (scope, element, attrs, ctrl) ->
@@ -39,6 +48,7 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
             <div sectir-pager
                 values="datos"
                 finalizeFunc ="finalFunc"
+                settings = "settings"
             </div>
             '''
             funcCompile = ->
