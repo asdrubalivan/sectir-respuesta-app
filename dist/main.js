@@ -31,19 +31,13 @@
             $scope.datos = false;
             $scope.finalFunc = function() {};
             successFn = function(data) {
-              var arrayDatos, key, key2, value, _ref;
+              var arrayDatos, key, value, _ref;
               $scope.jsonData = data;
               arrayDatos = [];
               _ref = data.data;
               for (key in _ref) {
                 value = _ref[key];
-                if (key !== "type" && key !== "namespace") {
-                  arrayDatos.push(data.data[key]);
-                } else {
-                  for (key2 in data.data[key]) {
-                    arrayDatos.push(data.data[key][key2]);
-                  }
-                }
+                arrayDatos.push(value);
               }
               return $scope.datos = arrayDatos;
             };
