@@ -27,8 +27,12 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
             successFn = (data)->
                 $scope.jsonData = data
                 arrayDatos = []
-                for value of data.data
-                    arrayDatos.push(data.data[value])
+                for key, value of data.data
+                    if key not in ["type","namespace"]
+                        arrayDatos.push(data.data[key])
+                    else
+                        for key2 of data.data[key]
+                            arrayDatos.push(data.data[key][key2])
                 $scope.datos = arrayDatos
             $http.get(SRC.getURL())
                 .then(successFn)
