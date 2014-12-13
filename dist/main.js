@@ -45,7 +45,8 @@
             $scope.settings = {
               table: {
                 titlefield: "enunciado",
-                typefield: "tipo"
+                typefield: "tipo",
+                subqenun: "enunciadocomp"
               },
               input: {
                 namefield: "enunciado",

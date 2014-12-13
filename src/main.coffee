@@ -36,6 +36,7 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
                 table:
                     titlefield: "enunciado"
                     typefield: "tipo"
+                    subqenun: "enunciadocomp"
                 input:
                     namefield: "enunciado"
                     typefield: "tipo"
