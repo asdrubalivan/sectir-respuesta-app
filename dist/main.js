@@ -19,7 +19,7 @@
   });
 
   sectirRApp.directive('sectirApp', [
-    "$compile", function($compile) {
+    "$compile", "SectirDataFactory", function($compile, SDF) {
       var isCompiled;
       isCompiled = false;
       return {
@@ -29,7 +29,9 @@
             var successFn;
             $scope.jsonData = false;
             $scope.datos = false;
-            $scope.finalFunc = function() {};
+            $scope.finalFunc = function() {
+              return console.log(SDF.data);
+            };
             successFn = function(data) {
               var arrayDatos, key, value, _ref;
               $scope.jsonData = data;

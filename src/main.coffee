@@ -15,7 +15,7 @@ sectirRApp.provider 'sectirRespuestaConfigProvider',
             }
     }
 
-sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
+sectirRApp.directive 'sectirApp', ["$compile", "SectirDataFactory", ($compile, SDF) ->
     isCompiled = false
     {
         restrict: "EA"
@@ -23,7 +23,7 @@ sectirRApp.directive 'sectirApp', ["$compile", ($compile) ->
             $scope.jsonData = false
             $scope.datos = false
             $scope.finalFunc = ->
-                #Empty
+                console.log SDF.data
             successFn = (data)->
                 $scope.jsonData = data
                 arrayDatos = []
