@@ -19,7 +19,7 @@
   });
 
   sectirRApp.directive('sectirApp', [
-    "$compile", "SectirDataFactory", function($compile, SDF) {
+    "$compile", "sectirDataFactory", function($compile, SDF) {
       var isCompiled;
       isCompiled = false;
       return {

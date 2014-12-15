@@ -15,7 +15,7 @@ sectirRApp.provider 'sectirRespuestaConfigProvider',
             }
     }
 
-sectirRApp.directive 'sectirApp', ["$compile", "SectirDataFactory", ($compile, SDF) ->
+sectirRApp.directive 'sectirApp', ["$compile", "sectirDataFactory", ($compile, SDF) ->
     isCompiled = false
     {
         restrict: "EA"
