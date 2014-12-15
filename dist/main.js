@@ -59,7 +59,7 @@
         ],
         link: function(scope, element, attrs, ctrl) {
           var elm, funcCompile;
-          elm = angular.element('<div sectir-pager\n    values="datos"\n    finalizeFunc ="finalFunc"\n    settings = "settings"\n</div>');
+          elm = angular.element('<div sectir-pager\n    values="datos"\n    finalizeFunc ="finalFunc()"\n    settings = "settings"\n</div>');
           funcCompile = function() {
             var compiled;
             if (!isCompiled && scope.datos) {

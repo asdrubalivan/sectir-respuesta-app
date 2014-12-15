@@ -48,7 +48,7 @@ sectirRApp.directive 'sectirApp', ["$compile", "sectirDataFactory", ($compile, S
             elm = angular.element '''
             <div sectir-pager
                 values="datos"
-                finalizeFunc ="finalFunc"
+                finalizeFunc ="finalFunc()"
                 settings = "settings"
             </div>
             '''
