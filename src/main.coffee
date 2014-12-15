@@ -3,15 +3,24 @@ sectirRApp = angular.module 'sectirRespuestaApp', [
 ]
 
 url = false
+anoComienzo = false
+anoFinal = false
 
 sectirRApp.provider 'sectirRespuestaConfigProvider',
     {
-        set: (myURL) ->
+        set: (myURL,myAnoComienzo,myAnoFinal) ->
             url = myURL
+            anoComienzo = myAnoComienzo
+            anoFinal = myAnoFinal
         $get: ->
             {
                 getURL: ->
                     url
+                getAnos: ->
+                    {
+                        anoComienzo: anoComienzo
+                        anoFinal: anoFinal
+                    }
             }
     }
 
@@ -21,6 +30,7 @@ sectirRApp.directive 'sectirApp', ["$compile", "sectirDataFactory", ($compile, S
         restrict: "EA"
         controller: ["$http","$scope", "sectirRespuestaConfigProvider", ($http, $scope , SRC) ->
             $scope.jsonData = false
+            $scope.anos = SRC.getAnos()
             $scope.datos = false
             $scope.finalFunc = ->
                 console.log SDF.data
@@ -40,8 +50,12 @@ sectirRApp.directive 'sectirApp', ["$compile", "sectirDataFactory", ($compile, S
                 input:
                     namefield: "enunciado"
                     typefield: "tipo"
-
             }
+            if $scope.anos
+                $scope.settings.table.anocomienzo =
+                    $scope.anos.anoComienzo
+                $scope.settings.table.anofinal =
+                    $scope.anos.anoFinal
             return
         ]
         link: (scope, element, attrs, ctrl) ->

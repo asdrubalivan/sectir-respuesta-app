@@ -1,18 +1,30 @@
 (function() {
-  var sectirRApp, url;
+  var anoComienzo, anoFinal, sectirRApp, url;
 
   sectirRApp = angular.module('sectirRespuestaApp', ['sectirTableModule']);
 
   url = false;
 
+  anoComienzo = false;
+
+  anoFinal = false;
+
   sectirRApp.provider('sectirRespuestaConfigProvider', {
-    set: function(myURL) {
-      return url = myURL;
+    set: function(myURL, myAnoComienzo, myAnoFinal) {
+      url = myURL;
+      anoComienzo = myAnoComienzo;
+      return anoFinal = myAnoFinal;
     },
     $get: function() {
       return {
         getURL: function() {
           return url;
+        },
+        getAnos: function() {
+          return {
+            anoComienzo: anoComienzo,
+            anoFinal: anoFinal
+          };
         }
       };
     }
@@ -28,6 +40,7 @@
           "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
             var successFn;
             $scope.jsonData = false;
+            $scope.anos = SRC.getAnos();
             $scope.datos = false;
             $scope.finalFunc = function() {
               return console.log(SDF.data);
@@ -55,6 +68,10 @@
                 typefield: "tipo"
               }
             };
+            if ($scope.anos) {
+              $scope.settings.table.anocomienzo = $scope.anos.anoComienzo;
+              $scope.settings.table.anofinal = $scope.anos.anoFinal;
+            }
           }
         ],
         link: function(scope, element, attrs, ctrl) {
