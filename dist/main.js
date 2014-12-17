@@ -1,19 +1,22 @@
 (function() {
-  var anoComienzo, anoFinal, sectirRApp, url;
+  var anoComienzo, anoFinal, sectirRApp, url, urlPost;
 
   sectirRApp = angular.module('sectirRespuestaApp', ['sectirTableModule']);
 
   url = false;
+
+  urlPost = false;
 
   anoComienzo = false;
 
   anoFinal = false;
 
   sectirRApp.provider('sectirRespuestaConfigProvider', {
-    set: function(myURL, myAnoComienzo, myAnoFinal) {
-      url = myURL;
-      anoComienzo = myAnoComienzo;
-      return anoFinal = myAnoFinal;
+    set: function(data) {
+      url = data.url;
+      urlPost = data.urlPost;
+      anoComienzo = data.anoComienzo;
+      return anoFinal = data.anoFinal;
     },
     $get: function() {
       return {

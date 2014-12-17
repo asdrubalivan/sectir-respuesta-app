@@ -3,15 +3,17 @@ sectirRApp = angular.module 'sectirRespuestaApp', [
 ]
 
 url = false
+urlPost = false
 anoComienzo = false
 anoFinal = false
 
 sectirRApp.provider 'sectirRespuestaConfigProvider',
     {
-        set: (myURL,myAnoComienzo,myAnoFinal) ->
-            url = myURL
-            anoComienzo = myAnoComienzo
-            anoFinal = myAnoFinal
+        set: (data) ->
+            url = data.url
+            urlPost = data.urlPost
+            anoComienzo = data.anoComienzo
+            anoFinal = data.anoFinal
         $get: ->
             {
                 getURL: ->
