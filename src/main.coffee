@@ -18,6 +18,8 @@ sectirRApp.provider 'sectirRespuestaConfigProvider',
             {
                 getURL: ->
                     url
+                getURLPost: ->
+                    urlPost
                 getAnos: ->
                     {
                         anoComienzo: anoComienzo
@@ -34,8 +36,13 @@ sectirRApp.directive 'sectirApp', ["$compile", "sectirDataFactory", ($compile, S
             $scope.jsonData = false
             $scope.anos = SRC.getAnos()
             $scope.datos = false
+            successPostFn = (data, status) ->
+                console.log data
+                console.log status
             $scope.finalFunc = ->
                 console.log SDF.data
+                $http.post(SRC.getURLPost(),SDF.data).
+                    success(successPostFn)
             successFn = (data)->
                 $scope.jsonData = data
                 arrayDatos = []
