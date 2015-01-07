@@ -53,8 +53,12 @@
               return console.log(status);
             };
             $scope.finalFunc = function() {
+              var isConfirmed;
               console.log(SDF.data);
-              return $http.post(SRC.getURLPost(), SDF.data).success(successPostFn);
+              isConfirmed = confirm(' ¿Desea terminar?\nLa encuesta no podrá volver a ser respondida');
+              if (isConfirmed) {
+                $http.post(SRC.getURLPost(), SDF.data).success(successPostFn);
+              }
             };
             successFn = function(data) {
               var arrayDatos, key, value, _ref;

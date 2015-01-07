@@ -41,8 +41,13 @@ sectirRApp.directive 'sectirApp', ["$compile", "sectirDataFactory", ($compile, S
                 console.log status
             $scope.finalFunc = ->
                 console.log SDF.data
-                $http.post(SRC.getURLPost(),SDF.data).
-                    success(successPostFn)
+                isConfirmed = confirm ''' ¿Desea terminar?
+                La encuesta no podrá volver a ser respondida
+                '''
+                if isConfirmed
+                    $http.post(SRC.getURLPost(),SDF.data).
+                        success(successPostFn)
+                return
             successFn = (data)->
                 $scope.jsonData = data
                 arrayDatos = []
