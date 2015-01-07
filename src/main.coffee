@@ -6,6 +6,7 @@ url = false
 urlPost = false
 anoComienzo = false
 anoFinal = false
+urlRetorno = false
 
 sectirRApp.provider 'sectirRespuestaConfigProvider',
     {
@@ -14,12 +15,15 @@ sectirRApp.provider 'sectirRespuestaConfigProvider',
             urlPost = data.urlPost
             anoComienzo = data.anoComienzo
             anoFinal = data.anoFinal
+            urlRetorno = data.urlRetorno
         $get: ->
             {
                 getURL: ->
                     url
                 getURLPost: ->
                     urlPost
+                getURLRetorno: ->
+                    urlRetorno
                 getAnos: ->
                     {
                         anoComienzo: anoComienzo
@@ -32,16 +36,20 @@ sectirRApp.directive 'sectirApp', ["$compile", "sectirDataFactory", ($compile, S
     isCompiled = false
     {
         restrict: "EA"
-        controller: ["$http","$scope", "sectirRespuestaConfigProvider", ($http, $scope , SRC) ->
+        controller: ["$http","$scope", "$window" , "sectirRespuestaConfigProvider", ($http, $scope, $window , SRC) ->
             $scope.jsonData = false
             $scope.anos = SRC.getAnos()
             $scope.datos = false
             successPostFn = (data, status) ->
                 console.log data
                 console.log status
+                retorno = SRC.getURLRetorno()
+                if retorno
+                    $window.location.href = retorno
+                return
             $scope.finalFunc = ->
                 console.log SDF.data
-                isConfirmed = confirm ''' ¿Desea terminar?
+                isConfirmed = confirm '''¿Desea terminar?
                 La encuesta no podrá volver a ser respondida
                 '''
                 if isConfirmed

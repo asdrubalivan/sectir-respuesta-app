@@ -1,5 +1,5 @@
 (function() {
-  var anoComienzo, anoFinal, sectirRApp, url, urlPost;
+  var anoComienzo, anoFinal, sectirRApp, url, urlPost, urlRetorno;
 
   sectirRApp = angular.module('sectirRespuestaApp', ['sectirTableModule']);
 
@@ -11,12 +11,15 @@
 
   anoFinal = false;
 
+  urlRetorno = false;
+
   sectirRApp.provider('sectirRespuestaConfigProvider', {
     set: function(data) {
       url = data.url;
       urlPost = data.urlPost;
       anoComienzo = data.anoComienzo;
-      return anoFinal = data.anoFinal;
+      anoFinal = data.anoFinal;
+      return urlRetorno = data.urlRetorno;
     },
     $get: function() {
       return {
@@ -25,6 +28,9 @@
         },
         getURLPost: function() {
           return urlPost;
+        },
+        getURLRetorno: function() {
+          return urlRetorno;
         },
         getAnos: function() {
           return {
@@ -43,19 +49,24 @@
       return {
         restrict: "EA",
         controller: [
-          "$http", "$scope", "sectirRespuestaConfigProvider", function($http, $scope, SRC) {
+          "$http", "$scope", "$window", "sectirRespuestaConfigProvider", function($http, $scope, $window, SRC) {
             var successFn, successPostFn;
             $scope.jsonData = false;
             $scope.anos = SRC.getAnos();
             $scope.datos = false;
             successPostFn = function(data, status) {
+              var retorno;
               console.log(data);
-              return console.log(status);
+              console.log(status);
+              retorno = SRC.getURLRetorno();
+              if (retorno) {
+                $window.location.href = retorno;
+              }
             };
             $scope.finalFunc = function() {
               var isConfirmed;
               console.log(SDF.data);
-              isConfirmed = confirm(' ¿Desea terminar?\nLa encuesta no podrá volver a ser respondida');
+              isConfirmed = confirm('¿Desea terminar?\nLa encuesta no podrá volver a ser respondida');
               if (isConfirmed) {
                 $http.post(SRC.getURLPost(), SDF.data).success(successPostFn);
               }
